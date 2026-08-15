@@ -7,15 +7,18 @@ function TaskList({
     if (tasks.length === 0) {
 
         return (
-
             <div className="empty">
 
+                <div className="empty-icon">
+                    ✓
+                </div>
+
                 <h3>
-                    No tasks found
+                    No tasks yet
                 </h3>
 
                 <p>
-                    Add your first task above.
+                    You're all caught up! Add your first task above.
                 </p>
 
             </div>
@@ -24,7 +27,6 @@ function TaskList({
 
 
     return (
-
         <div className="task-list">
 
             {tasks.map((task) => (
@@ -38,34 +40,58 @@ function TaskList({
                     key={task.id}
                 >
 
-                    <div>
+                    <div className="task-content">
 
-                        <h3>
-                            {task.title}
-                        </h3>
+                        <div className="task-title-row">
+
+                            <h3>
+                                {task.title}
+                            </h3>
+
+                            <span
+                                className={`status ${
+                                    task.status === "completed"
+                                        ? "completed"
+                                        : "pending"
+                                }`}
+                            >
+                                {task.status === "completed"
+                                    ? "Completed"
+                                    : "Pending"}
+                            </span>
+
+                        </div>
 
 
                         {task.description && (
-
-                            <p>
+                            <p className="task-description">
                                 {task.description}
                             </p>
-
                         )}
 
 
                         {task.due_date && (
+                            <div className="due-date">
 
-                            <small>
+                                <span className="calendar-icon">
+                                    📅
+                                </span>
 
-                                Due:{" "}
+                                <span>
+                                    Due{" "}
+                                    {new Date(
+                                        task.due_date
+                                    ).toLocaleDateString(
+                                        "en-US",
+                                        {
+                                            day: "numeric",
+                                            month: "short",
+                                            year: "numeric"
+                                        }
+                                    )}
+                                </span>
 
-                                {new Date(
-                                    task.due_date
-                                ).toLocaleDateString()}
-
-                            </small>
-
+                            </div>
                         )}
 
                     </div>
@@ -79,11 +105,9 @@ function TaskList({
                                 toggleTask(task)
                             }
                         >
-
                             {task.status === "completed"
-                                ? "Pending"
-                                : "Complete"}
-
+                                ? "↩ Mark Pending"
+                                : "✓ Complete"}
                         </button>
 
 
@@ -93,9 +117,7 @@ function TaskList({
                                 deleteTask(task.id)
                             }
                         >
-
-                            Delete
-
+                            🗑 Delete
                         </button>
 
                     </div>
