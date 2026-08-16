@@ -194,18 +194,115 @@ function App() {
     // ==========================================
 
     return (
+    <div className="app">
 
-        <div className="app">
+        {/* =========================================
+            SIDEBAR
+        ========================================= */}
+
+        <aside className="sidebar">
+
+            <div className="sidebar-logo">
+                <div className="logo-icon">
+                    ✓
+                </div>
+
+                <div>
+                    <h2>TaskFlow</h2>
+                    <span>Student Workspace</span>
+                </div>
+            </div>
+
+
+            <nav className="sidebar-nav">
+
+                <p className="nav-title">
+                    MENU
+                </p>
+
+                <button className="nav-item active">
+                    <span>▣</span>
+                    Dashboard
+                </button>
+
+                <button className="nav-item">
+                    <span>✓</span>
+                    My Tasks
+                </button>
+
+                <button className="nav-item">
+                    <span>◷</span>
+                    Pending
+                </button>
+
+                <button className="nav-item">
+                    <span>✓</span>
+                    Completed
+                </button>
+
+
+                <p className="nav-title second">
+                    WORKSPACE
+                </p>
+
+                <button className="nav-item">
+                    <span>📅</span>
+                    Schedule
+                </button>
+
+                <button className="nav-item">
+                    <span>⚙</span>
+                    Settings
+                </button>
+
+            </nav>
+
+
+            <div className="sidebar-bottom">
+
+                <div className="profile-card">
+
+                    <div className="profile-avatar">
+                        SM
+                    </div>
+
+                    <div>
+                        <strong>Student</strong>
+                        <span>My Workspace</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        {/* =========================================
+            MAIN CONTENT
+        ========================================= */}
+
+        <div className="dashboard">
 
             <header>
 
-                <h1>
-                    Student Task Manager
-                </h1>
+                <div className="header-content">
 
-                <p>
-                    Manage your daily tasks easily
-                </p>
+                    <div>
+                        <span className="welcome-text">
+                            Welcome back 👋
+                        </span>
+
+                        <h1>
+                            Student Task Manager
+                        </h1>
+
+                        <p>
+                            Organize your tasks and stay productive.
+                        </p>
+                    </div>
+
+                </div>
 
             </header>
 
@@ -218,39 +315,51 @@ function App() {
 
                     <div className="stat-card">
 
-                        <h2>
-                            {tasks.length}
-                        </h2>
+                        <div className="stat-icon total">
+                            ▣
+                        </div>
 
-                        <p>
-                            Total Tasks
-                        </p>
+                        <div>
+                            <h2>{tasks.length}</h2>
 
-                    </div>
-
-
-                    <div className="stat-card">
-
-                        <h2>
-                            {completedTasks}
-                        </h2>
-
-                        <p>
-                            Completed
-                        </p>
+                            <p>
+                                Total Tasks
+                            </p>
+                        </div>
 
                     </div>
 
 
                     <div className="stat-card">
 
-                        <h2>
-                            {pendingTasks}
-                        </h2>
+                        <div className="stat-icon completed-icon">
+                            ✓
+                        </div>
 
-                        <p>
-                            Pending
-                        </p>
+                        <div>
+                            <h2>{completedTasks}</h2>
+
+                            <p>
+                                Completed
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div className="stat-card">
+
+                        <div className="stat-icon pending-icon">
+                            ◷
+                        </div>
+
+                        <div>
+                            <h2>{pendingTasks}</h2>
+
+                            <p>
+                                Pending
+                            </p>
+                        </div>
 
                     </div>
 
@@ -261,9 +370,23 @@ function App() {
 
                 <section className="add-section">
 
-                    <h2>
-                        Add New Task
-                    </h2>
+                    <div className="section-heading">
+
+                        <div>
+                            <h2>
+                                Add New Task
+                            </h2>
+
+                            <p>
+                                Create a task and keep track of your work.
+                            </p>
+                        </div>
+
+                        <div className="section-icon">
+                            +
+                        </div>
+
+                    </div>
 
                     <TaskForm
                         addTask={addTask}
@@ -272,13 +395,27 @@ function App() {
                 </section>
 
 
-                {/* Task List */}
+                {/* Tasks */}
 
                 <section className="tasks-section">
 
-                    <h2>
-                        My Tasks
-                    </h2>
+                    <div className="section-heading">
+
+                        <div>
+                            <h2>
+                                My Tasks
+                            </h2>
+
+                            <p>
+                                Manage and track your current tasks.
+                            </p>
+                        </div>
+
+                        <span className="task-count">
+                            {tasks.length} tasks
+                        </span>
+
+                    </div>
 
 
                     {loading ? (
@@ -302,7 +439,9 @@ function App() {
             </main>
 
         </div>
-    );
+
+    </div>
+);
 }
 
 export default App;
